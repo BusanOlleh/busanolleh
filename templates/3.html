@@ -287,18 +287,23 @@
             arr_lon.push(obj[l[{{m}}]].lon);
             let marker{{m+1}} = new N.Marker(markerOptions{{m+1}});
 
-            N.Event.addListener(marker{{m+1}}, 'click', function () {
-                event.preventDefault();
-                $('.content-wrap').scrollTop(offset{{m+1}} - offset1);
-            });
-
-            var infowindow{{m+1}} = new naver.maps.InfoWindow({
+            let infowindow{{m+1}} = new naver.maps.InfoWindow({
                 content: '<div class="iw_pd"><b>'+name{{m+1}}+'</b></div>',
                 backgroundColor: 'transparant',
                 borderWidth: 0,
                 disableAnchor: true,
                 pixelOffset: new N.Point(0, 70),
             });
+
+            N.Event.addListener(marker{{m+1}}, 'click', function () {
+                event.preventDefault();
+                $('.content-wrap').scrollTop(offset{{m+1}} - offset1);
+                infowindow{{m+1}}.open(map, marker{{m+1}});
+                map.setZoom(15);
+                map.setCenter(latlon{{m+1}});
+            });
+
+            
         {% endfor %}
      
         let show_fit_5 = new N.LatLngBounds(
