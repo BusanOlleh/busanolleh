@@ -1,0 +1,16 @@
+https://scribblinganything.tistory.com/397 세션 pop
+https://ddaaadd.tistory.com/208 위와 동일
+https://kgu0724.tistory.com/229 localStorage/SessionStorage with json
+https://www.daleseo.com/js-web-storage/ 위와 동일
+https://dubaiyu.tistory.com/242 javascript + session + jinja
+https://nobacking.tistory.com/42 Ajax 동기식 async, 캐시 방지 cache
+https://sncap.tistory.com/963 ajax return success data
+https://bokyeong-kim.github.io/python/flask/2020/05/09/flask(1).html socket io flask
+https://scribblinganything.tistory.com/391 flask return redirect url for + 인자값
+https://chichi-story.tistory.com/25 js jquery attr (class -> id 등)
+https://gangzzang.tistory.com/entry/%EC%A0%9C%EC%9D%B4%EC%BF%BC%EB%A6%ACjQuery-%EC%84%A0%ED%83%9D%EC%9E%90 제이쿼리 선택자
+https://wsss.tistory.com/1212 svg 툴팁 애니메이션 > 지도?
+
+https://color.adobe.com/ko/create/color-wheel 컬러파레트
+https://www.flaticon.com/ 마커 아이콘
+Open Sans Condensed Bold 마커 폰트 + https://express.adobe.com/ko-KR/

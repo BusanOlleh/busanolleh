@@ -1,3 +1,11 @@
+# Google Drive 관련
+.tmp.drivedownload/
+.tmp.driveupload/
+travel_spot_data.csv
+test.ipynb
+참고.html
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
