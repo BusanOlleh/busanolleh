@@ -808,7 +808,8 @@ function initPageSliders(){
 				  itemsDesktop : [1000,1], 
 					itemsDesktopSmall : [900,1], 
           itemsTablet: [470,1], 
-          itemsMobile : false, 
+          itemsMobile: false, 
+          autoWidth: true,
 				  
 				  //Pagination
 					pagination : true,

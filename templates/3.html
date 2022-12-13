@@ -88,9 +88,8 @@
                     <div class="col-sm-6 col-md-6 wow fadeIn content-wrap" data-wow-delay="1000ms"
                         style="visibility: visible; animation-delay: 1000ms; animation-name: fadeIn;">
                         {% for i in range(5) %}
-                        <div class="col-sm-2 col-md-2 font-100 text-right" style="color: rgba(0,0,0,0.1);">{{i+1}}</div>
-                        <div class="content-box text-left col-sm-10 col-md-10">
-                            <div class="">
+                        <div class="font-100-web col-md-2">{{i+1}}</div>
+                        <div class="content-box text-left col-md-10">
                                 <div class="post-prev-title">
                                     <h3 id="name{{i+1}}"></h3>
                                 </div>
@@ -99,32 +98,44 @@
                                     <span id="tag{{i+1}}-{{j}}"></span>
                                     {% endfor %}
                                 </div>
-                            </div>
                             <div>
                                 <div id="addr{{i+1}}" class="addr-pd pd-ctt"></div>
                             </div>
-                            <div>
-                                <div class="col-sm-4 col-md-4 pd-ctt">
-                                    <b>BUS</b><br>
-                                    <b>SUBWAY</b><br>
-                                    <b>PARKING</b>
+                            <div class="row" style="display: flex; flex-direction: column;">
+                                <div style="display: flex; flex-direction: row;">
+                                    <div class="col-sm-4 col-md-4 pd-ctt">
+                                        <b>BUS</b>
+                                    </div>
+                                    <div class="pd-ctt">
+                                        <span id="bus{{i+1}}"></span>
+                                    </div>
                                 </div>
-
-                                <div class="pd-ctt">
-                                    <span id="bus{{i+1}}"></span><br>
-                                    <span id="subway{{i+1}}"></span><br>
-                                    <span id="parking{{i+1}}"></span> (<span id="parking_dist{{i+1}}"></span>)<br>
+                                <div style="display: flex; flex-direction: row;">
+                                    <div class="col-sm-4 col-md-4 pd-ctt">
+                                        <b>SUBWAY</b>
+                                    </div>
+                                    <div class="pd-ctt">
+                                        <span id="subway{{i+1}}"></span>
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: row;">
+                                    <div class="col-sm-4 col-md-4 pd-ctt">
+                                        <b>PARKING</b>
+                                    </div>
+                                    <div class="pd-ctt">
+                                        <span id="parking{{i+1}}"></span> (<span id="parking_dist{{i+1}}"></span>)
+                                    </div>
                                 </div>
                             </div>
                             <div>
-                                <div class="sm-mb-10 addr-pd pd-ctt"><b>추천 맛집 & 카페</b></div>
+                                <div class="sm-mb-10 addr-pd pd-ctt"><b>추천 맛집 & 카페</b> / 관광지와의 거리 (m)</div>
                             </div>
                             <div>
-                                <div class="row">
+                                <div class="row" style="display: flex; flex-direction: row;">
                                     {% for k in range(3) %}
-                                    <div class="col-sm-4 col-md-4 text-center pd-ctt">
-                                        <span id="cfrst{{i+1}}-{{k+1}}" class="">맛있는 카페</span><br>
-                                        <span id="cfrst-dist{{i+1}}-{{k+1}}" class="">100m </span>
+                                    <div class="text-center pd-ctt" style="flex:1;">
+                                        <span id="rcn{{i+1}}-{{k+1}}"></span><br>
+                                        <span id="rcd{{i+1}}-{{k+1}}"></span>
                                     </div>
                                     {% endfor %}
                                 </div>
@@ -156,10 +167,15 @@
                 $('.fes1-cont').css('padding', '3vh 3vw');
                 $('.sm-mb-50').css('margin-bottom', '1vh');
                 $('.content-wrap').css('height', '35vh');
+                $('.font-100-web').addClass('font-100-mobile');
+                $('.font-100-web').removeClass('font-100-web col-md-2');
+
             } else { 
                 $('.fes1-cont').css('padding', '5vh 10vw');
                 $('.sm-mb-50').css('margin-bottom', '5vh');
-                $('.content-wrap').css('height', '60vh');
+                $('.content-wrap').css('height', '60vh');                
+                $('.font-100-web').removeClass('font-100-mobile');
+                $('.font-100-web').addClass('font-100-web col-md-2');
             } 
             const wrapHeight = $('.content-wrap').height() * 0.99;
             $('.map').css('height', wrapHeight);
@@ -242,6 +258,10 @@
             pd_text = '1km 이상'
         }
         $('#parking_dist{{k+1}}').html(pd_text);
+        {% for q in range(3) %}
+        $('#rcn{{k+1}}-{{q+1}}').html(obj[l[{{ k }}]].n{{q+1}});
+        $('#rcd{{k+1}}-{{q+1}}').html(obj[l[{{ k }}]].d{{q+1}}+'m');
+        {% endfor %}
         {% endfor %}
 
         // console 확인
@@ -266,6 +286,7 @@
         let arr_lon = []
         
         let off2 = ($('.content-wrap').offset().top) * 1.04
+
         {% for m in range(5) %}
             let cluster{{m+1}} = obj[l[{{ m }}]].cluster
             let latlon{{m+1}} = new N.LatLng(obj[l[{{m}}]].lat, obj[l[{{m}}]].lon);
@@ -296,14 +317,34 @@
             });
 
             N.Event.addListener(marker{{m+1}}, 'click', function () {
-                event.preventDefault();
-                $('.content-wrap').scrollTop(offset{{m+1}} - offset1);
+                $('.content-wrap').animate({scrollTop : offset{{m+1}} - offset1}, 150, 'swing');
                 infowindow{{m+1}}.open(map, marker{{m+1}});
                 map.setZoom(15);
                 map.setCenter(latlon{{m+1}});
             });
+        {% endfor %}
+        
+        //참고 : https://gurtn.tistory.com/129, https://velog.io/@sss5793/Intersection-Observer-API
+        let boxList = document.querySelectorAll('.content-box');
 
-            
+        let options = {
+            root: null, // viewport
+            rootMargin: "0px",
+            threshold: 0.5,  // 50%가 viewport에 들어와 있어야 callback 실행
+        }
+
+        {% for r in range(5) %}
+        let observer{{r}} = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if ((entry.isIntersecting)){
+                    infowindow{{r+1}}.open(map, marker{{r+1}});
+                    map.setZoom(15);
+                    map.setCenter(latlon{{r+1}});
+                }
+            });
+        }, options);
+        
+        observer{{r}}.observe(boxList[{{r}}]);
         {% endfor %}
      
         let show_fit_5 = new N.LatLngBounds(
@@ -330,6 +371,8 @@
             {% endif %}
             {% for n in range(5) %}
             if (loc == {{n+1}}){
+                $('.content-wrap').animate({scrollTop : offset{{n+1}} - offset1}, 150);
+                //$('.content-wrap').scrollTop(offset{{n+1}} - offset1);
                 infowindow{{n+1}}.open(map, eval("marker"+loc));
                 map.setZoom(15);
                 map.setCenter(eval("latlon"+loc));

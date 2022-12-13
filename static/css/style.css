@@ -8317,11 +8317,11 @@ h2.portfolio-timeline-title {
 	width: 100%;
     z-index: 5;
 }
-.owl-carousel .owl-wrapper-outer.autoHeight{
+/* .owl-carousel .owl-wrapper-outer.autoHeight{
 	-webkit-transition: height 500ms ease-in-out;
 	-o-transition: height 500ms ease-in-out;
 	transition: height 500ms ease-in-out;
-}
+} */
 .owl-carousel .owl-item{
 	float: left;
 }
@@ -9654,9 +9654,9 @@ img.mfp-img {
 .input-group-addon.input-group-addon2 {
   border:none;  
 }
-.travel-carousel .owl-wrapper-outer {
+/* .travel-carousel .owl-wrapper-outer {
   padding-top:105px;
-}
+} */
 .date-picker input{
   line-height:25px;
 }
@@ -11590,4 +11590,19 @@ body{
   padding: 0.5vh;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 3vh;
+}
+
+.font-100-mobile {
+  text-align: left;
+  color: rgba(0, 0, 0, .6);
+  float: left;
+  font-size: 8vw;
+  margin-right: 2vw;
+}
+
+.font-100-web {
+  text-align: right;
+  font-size: 14vh;
+  line-height: 11vh;
+  color: rgba(0,0,0,0.1);
 }

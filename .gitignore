@@ -2,6 +2,8 @@
 .tmp.drivedownload/
 .tmp.driveupload/
 travel_spot_data.csv
+travel_spot_data_2.csv
+r_cafe_data.csv
 test.ipynb
 참고.html
 해야할 것.txt

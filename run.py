@@ -29,15 +29,15 @@ def result():
 def point():
     data = request.get_json()
 
-    sentiment = data['sentiment']  # 36DD15
+    sentiment = data['sentiment']  
     if sentiment == '힐링되는': 
         sentiment = 0
-    elif sentiment == '열정적인':  # DD152F
+    elif sentiment == '열정적인':  
         sentiment = 1
-    elif sentiment == '유익한':  # BC15DD
+    elif sentiment == '유익한':  
         sentiment = 2
 
-    tag = data['tag']  # str indexing
+    tag = data['tag']  # str indexing 
 
     tags = ['t' + str(i+1) for i, c in enumerate(tag) if c == '1']
 
@@ -51,7 +51,7 @@ def point():
         ts['point'] = ts['point'] + ts[t]
 
     ts['point'] += ts['rcmded'] * 0.5  # 추천 관광지 점수 합산
-
+   
     # 관광지 행을 random shuffle해서 점수 순 정렬
     ts_top = ts.sample(frac=1).sort_values(['point'], ascending=False)
 
