@@ -1,59 +1,5 @@
-<!DOCTYPE html>
-<!--
-	Theme Name: HASWELL
-	Description: HTML/CSS 
-	Author: ABCgomel 
-	Designed & Coded by ABCgomel
--->
-<html lang="ko">
-
-<head>
-    <title>부산올래?</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <!-- CSS -->
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <!-- ICONS ELEGANT FONT & FONT AWESOME & LINEA ICONS -->
-    <link rel="stylesheet" href="/static/css/icons-fonts.css">
-
-    <!-- TEXT ROTATOR -->
-    <link rel="stylesheet" href="/static/css/text-rotator.css">
-    <!-- CSS THEME -->
-    <link rel="stylesheet" href="/static/css/style.css">
-    <!-- ANIMATE -->
-    <link rel='stylesheet' href="/static/css/animate.min.css">
-    <!-- FAVICONS -->
-    <link rel="shortcut icon" href="/static/images/favicon.png">
-    <!-- CSS end -->
-    <!-- JS begin some js files in bottom of file-->
-</head>
-
-<body>
-    <!-- LOADER -->
-    <div id="loader-overflow">
-        <div id="loader3"></div>
-    </div>
     <div id="wrap" class="boxed js-height-fullscr">
-        <!-- HEADER -->
-        <header id="nav" class="header header-1 black-header affix-on-mobile">
-            <div class="header-wrapper">
-                <div class="container-m-30 clearfix">
-                    <div class="logo-row">
-                        <!-- LOGO -->
-                        <div class="logo-container-2">
-                            <div class="logo-2">
-                                <a href="/" class="clearfix">
-                                    <img src="/static/images/logo.png" class="logo-img" alt="Logo">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-
+        {% include 'header.html' %}
         <!-- PROGRESSBAR -->
         <div class="page-title-cont page-title-big custom-bg">
             <div class="relative container">
@@ -66,7 +12,6 @@
                 </div>
             </div>
         </div>
-
         <!-- FEATURES 1 -->
         <div class="page-section">
             <div class="fes1-cont text-center">
@@ -128,7 +73,7 @@
                                 </div>
                             </div>
                             <div>
-                                <div class="sm-mb-10 addr-pd pd-ctt"><b>추천 맛집 & 카페</b> / 관광지와의 거리 (m)</div>
+                                <div class="sm-mb-10 addr-pd pd-ctt"><b>추천 맛집 & 카페</b></div>
                             </div>
                             <div>
                                 <div class="row" style="display: flex; flex-direction: row;">
@@ -157,10 +102,8 @@
     <!-- JS begin -->
     <!-- jQuery  -->
     <script src="/static/js/jquery-1.11.2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"
-        integrity="sha512-iWPnCISAd/J+ZacwV2mbNLCaPGRrRo5OS81lKTVPtRg1wGTC20Cfmp5Us5RcbLv42QLdbAWl0MI57yox5VecQg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
+        $('li:eq(1)').addClass("active");
         // 지도 높이 조정 (최초 실행 + 창 크기 조정 때마다)
         function resize() {
             if (window.innerWidth < window.innerHeight) {
@@ -260,7 +203,13 @@
         $('#parking_dist{{k+1}}').html(pd_text);
         {% for q in range(3) %}
         $('#rcn{{k+1}}-{{q+1}}').html(obj[l[{{ k }}]].n{{q+1}});
-        $('#rcd{{k+1}}-{{q+1}}').html(obj[l[{{ k }}]].d{{q+1}}+'m');
+        rcd = obj[l[{{ k }}]].d{{q+1}}
+        if (rcd >= 1000){
+            rcd = Math.ceil(rcd / 10) * 10 / 1000 +' km'
+        }else {
+            rcd = obj[l[{{ k }}]].d{{q+1}}+' m'
+        }
+        $('#rcd{{k+1}}-{{q+1}}').html(rcd);
         {% endfor %}
         {% endfor %}
 
@@ -317,36 +266,13 @@
             });
 
             N.Event.addListener(marker{{m+1}}, 'click', function () {
-                $('.content-wrap').animate({scrollTop : offset{{m+1}} - offset1}, 150, 'swing');
+                $('.content-wrap').animate({scrollTop : offset{{m+1}} - offset1}, 200, 'swing');
                 infowindow{{m+1}}.open(map, marker{{m+1}});
                 map.setZoom(15);
                 map.setCenter(latlon{{m+1}});
             });
         {% endfor %}
         
-        //참고 : https://gurtn.tistory.com/129, https://velog.io/@sss5793/Intersection-Observer-API
-        let boxList = document.querySelectorAll('.content-box');
-
-        let options = {
-            root: null, // viewport
-            rootMargin: "0px",
-            threshold: 0.5,  // 50%가 viewport에 들어와 있어야 callback 실행
-        }
-
-        {% for r in range(5) %}
-        let observer{{r}} = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if ((entry.isIntersecting)){
-                    infowindow{{r+1}}.open(map, marker{{r+1}});
-                    map.setZoom(15);
-                    map.setCenter(latlon{{r+1}});
-                }
-            });
-        }, options);
-        
-        observer{{r}}.observe(boxList[{{r}}]);
-        {% endfor %}
-     
         let show_fit_5 = new N.LatLngBounds(
             new N.LatLng(Math.min.apply(null, arr_lat)-0.001, Math.min.apply(null, arr_lon)-0.1),
             new N.LatLng(Math.max.apply(null, arr_lat)+0.001, Math.max.apply(null, arr_lon)+0.1));
@@ -371,7 +297,7 @@
             {% endif %}
             {% for n in range(5) %}
             if (loc == {{n+1}}){
-                $('.content-wrap').animate({scrollTop : offset{{n+1}} - offset1}, 150);
+                $('.content-wrap').animate({scrollTop : offset{{n+1}} - offset1}, 200);
                 //$('.content-wrap').scrollTop(offset{{n+1}} - offset1);
                 infowindow{{n+1}}.open(map, eval("marker"+loc));
                 map.setZoom(15);
@@ -381,34 +307,30 @@
             sessionStorage.setItem("loc", loc);
         });
         {% endfor %}
+
+        //참고 : https://gurtn.tistory.com/129, https://velog.io/@sss5793/Intersection-Observer-API
+        let boxList = document.querySelectorAll('.content-box');
+
+        let options = {
+            root: null, // viewport
+            rootMargin: "0px",
+            threshold: 0.5,  // 50%가 viewport에 들어와 있어야 callback 실행
+        }
+
+        {% for r in range(5) %}
+        let observer{{r}} = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if ((entry.isIntersecting)){
+                    infowindow{{r+1}}.open(map, marker{{r+1}});
+                    map.setZoom(15);
+                    map.setCenter(latlon{{r+1}});
+                }
+            });
+        }, options);
         
+        observer{{r}}.observe(boxList[{{r}}]);
+        {% endfor %}
+    
 
 
     </script>
-
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/static/js/bootstrap.min.js"></script>
-    <!-- MAGNIFIC POPUP -->
-    <script src='/static/js/jquery.magnific-popup.min.js'></script>
-    <!-- NAV -->
-    <script src="/static/js/jquery.nav.js"></script>
-    <!-- PORTFOLIO SCRIPTS -->
-    <script src="/static/js/isotope.pkgd.min.js"></script>
-    <script src="/static/js/imagesloaded.pkgd.min.js"></script>
-    <script src="/static/js/masonry.pkgd.min.js"></script>
-    <!-- COUNTER -->
-    <script src="/static/js/jquery.countTo.js"></script>
-    <!-- APPEAR -->
-    <script src="/static/js/jquery.appear.js"></script>
-    <!-- OWL CAROUSEL -->
-    <script src="/static/js/owl.carousel.min.js"></script>
-    <!-- PARALLAX -->
-    <script src="/static/js/jquery.stellar.min.js"></script>
-    <!-- TEXT ROTATOR -->
-    <script src="/static/js/text-rotator.js"></script>
-    <!-- MAIN SCRIPT -->
-    <script src="/static/js/main.js"></script>
-    <!-- JS end -->
-</body>
-
-</html>

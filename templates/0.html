@@ -1,63 +1,7 @@
-<!DOCTYPE html>
-<!--
-	Theme Name: HASWELL
-	Description: HTML/CSS 
-	Author: ABCgomel 
-	Designed & Coded by ABCgomel
--->
-<html lang="ko">
-
-<head>
-  <title>부산올래?</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- CSS -->
-  <!-- BOOTSTRAP -->
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-  <!-- GOOGLE FONT -->
-  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700%7COpen+Sans:400,300,700' rel='stylesheet'
-    type='text/css'>
-  <!-- ICONS ELEGANT FONT & FONT AWESOME & LINEA ICONS -->
-  <link rel="stylesheet" href="/static/css/icons-fonts.css">
-  <!-- TEXT ROTATOR -->
-  <link rel="stylesheet" href="/static/css/text-rotator.css">
-  <!-- CSS THEME -->
-  <link rel="stylesheet" href="/static/css/style.css">
-  <!-- ANIMATE -->
-  <link rel='stylesheet' href="/static/css/animate.min.css">
-  <!-- FAVICONS -->
-  <link rel="shortcut icon" href="/static/images/favicon.png">
-  <!-- CSS end -->
-  <!-- JS begin some js files in bottom of file-->
-</head>
-
-<body>
-  <!-- LOADER -->
-  <div id="loader-overflow">
-    <div id="loader3"></div>
-  </div>
-
   <div id="wrap" class="boxed ">
     <div class="header-transporent-bg-black">
 
-      <!-- HEADER -->
-      <header id="nav" class="header header-1 black-header affix-on-mobile">
-        <div class="header-wrapper">
-          <div class="container-m-30 clearfix">
-            <div class="logo-row">
-              <!-- LOGO -->
-              <div class="logo-container-2">
-                <div class="logo-2">
-                  <a href="/" class="clearfix">
-                    <img src="/static/images/logo.png" class="logo-img" alt="Logo">
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      {% include 'header.html' %}
 
       <!-- STATIC MEDIA IMAGE -->
       <div id="background" class="sm-img-bg-fullscr parallax-section" data-stellar-background-ratio="0.5">
@@ -66,7 +10,7 @@
             <!-- OPACITY container -->
             <div id="main-box" class="main-box-bg">
               <!-- LAYER NR. 1 -->
-              <h1 class="cd-headline zoom font-white-sm norm-30-wide sm-mb-20">
+              <h1 class="cd-headline zoom font-white-sm font-8 sm-mb-20">
                 <span class="cd-words-wrapper waiting">
                   <b class="is-visible font font-white">힐링 하고 싶은</b>
                   <b class="font font-white">사랑 하고 싶은</b>
@@ -244,29 +188,3 @@
     console.log(num)
     sessionStorage.setItem('num', num);
   </script>
-
-
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="/static/js/bootstrap.min.js"></script>
-  <!-- MAGNIFIC POPUP -->
-  <script src='/static/js/jquery.magnific-popup.min.js'></script>
-  <!-- PORTFOLIO SCRIPTS -->
-  <script src="/static/js/isotope.pkgd.min.js"></script>
-  <script src="/static/js/imagesloaded.pkgd.min.js"></script>
-  <script src="/static/js/masonry.pkgd.min.js"></script>
-  <!-- COUNTER -->
-  <script src="/static/js/jquery.countTo.js"></script>
-  <!-- APPEAR -->
-  <script src="/static/js/jquery.appear.js"></script>
-  <!-- OWL CAROUSEL -->
-  <script src="/static/js/owl.carousel.min.js"></script>
-  <!-- PARALLAX -->
-  <script src="/static/js/jquery.stellar.min.js"></script>
-  <!-- TEXT ROTATOR -->
-  <script src="/static/js/text-rotator.js"></script>
-  <!-- MAIN SCRIPT -->
-  <script src="/static/js/main.js"></script>
-  <!-- JS end -->
-</body>
-
-</html>
