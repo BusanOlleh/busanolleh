@@ -19,18 +19,18 @@
   }
 }
 .cd-headline {
-  font-size: 3rem;
-  line-height: 1.2;
+  font-size: 4em;
+  /* line-height: 1.2; */
 }
 @media only screen and (min-width: 768px) {
   .cd-headline {
-    font-size: 4.4rem;
+    font-size: 4em;
     font-weight: 300;
   }
 }
 @media only screen and (min-width: 1170px) {
   .cd-headline {
-    font-size: 6rem;
+    font-size: 4em;
   }
 }
 .cd-words-wrapper {

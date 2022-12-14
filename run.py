@@ -7,23 +7,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('0.html')
+    return render_template('index.html', pageNum='0')
 
-
-@app.route('/1')
-def input1():
-    return render_template('1.html')
-
-
-@app.route('/2')
-def input2():
-    return render_template('2.html', zip=zip, enumerate=enumerate)
-
-
-@app.route('/result')
-def result():
-    return render_template('3.html')
-
+@app.route('/<num>')
+def input1(num):
+    if num == 'result': num = '3'
+    return render_template('index.html', pageNum=num, zip=zip, enumerate=enumerate)
 
 @app.route('/point', methods=['POST'])
 def point():
@@ -64,5 +53,4 @@ def point():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    # app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', debug=True)

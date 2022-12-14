@@ -793,11 +793,11 @@ support for no js
   
 .busan {
 font-family: 'Busan';
+font-size: 14vh;
 } 
 
 .font {
 font-family: 'KCC-eunyoung';
-font-size: 72px;
 }
 
 .font-white, .font-white a{
@@ -815,10 +815,8 @@ font-size: 72px;
 }
 .light-100-wide{
 	font-family: 'Lato',Arial,Helvetica,sans-serif;
-	font-size: 100px;
-	line-height: 100px;
-	font-weight: 300;
-  letter-spacing:24px;
+	line-height: 1;
+  letter-spacing: 1rem;
   color:#4b4e53;
 }
 .light-73-wide{
@@ -1286,10 +1284,10 @@ font-size: 72px;
 }
 
 @media only screen and (max-width : 768px) {
-  .container {
+  /* .container {
     padding-left:20px;
     padding-right:20px;
-  }
+  } */
   .row-sm-fix {
 		margin-right: -20px;
     margin-left: -20px; 
@@ -2724,13 +2722,6 @@ table.shopping-cart-table tr th, table.shopping-cart-table tr td {
     letter-spacing:5px;
   }
 }
-.sm-cont-middle {
-  display: table-cell;
-  height: 100%;
-  width: 70%; /* adjusted */
-  vertical-align: middle;
-}
-
 /***** BG VIDEO *****/
 .sm-video-wrapper{
   position: absolute;
@@ -3762,7 +3753,7 @@ background:none;
 	-webkit-transition: background .3s ease, height .4s ease;
 	-o-transition: background .3s ease, height .4s ease;
 	transition: background .3s ease, height .4s ease;
-	width:100%;
+	width:fit-content;
 	z-index:29;
 }
 .affix.header {
@@ -3908,7 +3899,7 @@ header.affix .logo .logo-img {
 	transition: all .4s ease 0s;
 }
 .logo-2 {
-	display: block;
+	display: flex;
 	padding:2vh 0;
 	-webkit-transition: all .4s ease 0s;
 	-o-transition: all .4s ease 0s;
@@ -5486,7 +5477,6 @@ button {
 	-webkit-transition: all .3s ease 0s;
 	-o-transition: all .3s ease 0s;
 	transition: all .3s ease 0s;
-  font-size: 20px;
 /****	add in anim	*******/
 	outline: none;
 	position: relative;	
@@ -5501,7 +5491,7 @@ button {
 }
 .button.medium  {
 	padding: 10px 30px 10px 30px;
-	display:inline-block;
+	/* display:inline-block; */
 }
 .button.medium-compare  {
 	font-size:14px;
@@ -11354,22 +11344,23 @@ ul#flickr-feeds li a, ul#flickr-sfeeds li a img {
   counter-increment: step;
   width: 3vh;
   height: 3vh;
-  border: 2px solid #bebebe;
+  border: 1px solid #bebebe;
   display: block;
   margin: 0 auto 10px auto;
   border-radius: 50%;
-  line-height: 3vh;
+  font-size: 2vh;
+  line-height: 2.8vh;
   background: white;
   color: #bebebe;
   text-align: center;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .progressbar li:after {
   content: '';
   position: absolute;
   width: 100%;
-  height: 3px;
+  height: 1px;
   background: #979797;
   top: 1.5vh;
   left: -50%;
@@ -11379,6 +11370,29 @@ ul#flickr-feeds li a, ul#flickr-sfeeds li a img {
 .progressbar li:first-child:after {
   content: none;
 }
+
+.progressbar li.firstChild:first-child:before{
+  border-color: #37a2d6;
+  background: #37a2d6;
+  color: white;
+ }
+
+.progressbar li.active + li:nth-child(n):before{
+  border-color: #37a2d6;
+  background: #37a2d6;
+  color: white;
+ }
+
+/* .progressbar li.active + li:after{
+  background: #FFCCCC;
+ } */
+ 
+ /* .progressbar li.active + li:before{
+ border-color: #FFCCCC;
+ background: #FFCCCC;
+ color: white;
+ } */
+
 
 .text-center {
   text-align: center;
@@ -11393,10 +11407,14 @@ ul#flickr-feeds li a, ul#flickr-sfeeds li a img {
 }
 
 .main-box-bg {
-  border: 15px solid white; 
+  display: flex;
+  border: 1rem solid white; 
   border-style: double; 
-  padding: 30px;
   background-color: rgba(0,0,0,0.3);
+  height: 60vh;
+  margin: 20vh 15vw;
+  text-align: center;
+  flex-direction: column;
 }
 
 .btn-margin {
@@ -11605,4 +11623,21 @@ body{
   font-size: 14vh;
   line-height: 11vh;
   color: rgba(0,0,0,0.1);
+}
+
+.box-item {
+  display: flex;
+  flex-wrap: 1;
+  margin: auto;
+}
+
+#txt2 {
+  width: 4rem;
+}
+
+.button-0 {
+  width: 12vw;
+  line-height: 100%;
+  margin: 1rem;
+  width: 
 }

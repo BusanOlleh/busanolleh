@@ -1,159 +1,63 @@
-<!DOCTYPE html>
-<!--
-	Theme Name: HASWELL
-	Description: HTML/CSS 
-	Author: ABCgomel 
-	Designed & Coded by ABCgomel
--->
-<html lang="ko">
-
-<head>
-    <title>부산올래?</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <!-- CSS -->
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <!-- GOOGLE FONT -->
-    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700%7COpen+Sans:400,300,700' rel='stylesheet'
-        type='text/css'>
-    <!-- ICONS ELEGANT FONT & FONT AWESOME & LINEA ICONS -->
-    <link rel="stylesheet" href="/static/css/icons-fonts.css">
-    <!-- TEXT ROTATOR -->
-    <link rel="stylesheet" href="/static/css/text-rotator.css">
-    <!-- CSS THEME -->
-    <link rel="stylesheet" href="/static/css/style.css">
-    <!-- ANIMATE -->
-    <link rel='stylesheet' href="/static/css/animate.min.css">
-    <!-- FAVICONS -->
-    <link rel="shortcut icon" href="/static/images/favicon.png">
-    <!-- CSS end -->
-    <!-- JS begin some js files in bottom of file-->
-</head>
-
-<body>
-    <!-- LOADER -->
-    <div id="loader-overflow">
-        <div id="loader3"></div>
-    </div>
-    <!-- HEADER -->
-    <header id="nav" class="header header-1 black-header affix-on-mobile">
-        <div class="header-wrapper">
-            <div class="container-m-30 clearfix">
-                <div class="logo-row">
-                    <!-- LOGO -->
-                    <div class="logo-container-2">
-                        <div class="logo-2">
-                            <a href="/" class="clearfix">
-                                <img src="/static/images/logo.png" class="logo-img" alt="Logo">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{% include 'header.html' %}
+{% include 'progressbar.html' %}
+<div class="page-section">
+    <div class="fes1-cont text-center wow fadeIn">
+        <div class="font-32 font-black sm-mt-40 sm-mb-40">
+            이번 여행은
+            <br><br>
+            <b id="changingTag" class="underline">                   </b> 여행이고 싶다.
         </div>
-    </header>
-    <div class="page-title-cont page-title-big custom-bg">
-        <div class="relative container">
-            <div class="container-pg row justify-content-md-center">
-                <ul class="progressbar ">
-                    <li>감성 선택</li>
-                    <li>태그 선택</li>
-                    <li>결과 보기</li>
-                </ul>
-            </div>
+        <div class="sm-mt-40 sm-mb-40">
+            <button class="button medium thin blue btn-margin btn-square">힐링되는</button>
+            <button class="button medium thin blue btn-margin btn-square">열정적인</button>
+            <button class="button medium thin blue btn-margin btn-square">유익한</button>
+        </div>
+        <div class="sm-mt-40 sm-mb-40">
+            <button id="nextBtn" class="button medium thin blue btn-margin ">다음</button>
+            <br>
+            <a id="prevBtn" class="text-underline" href="javascript:window.history.go(-1);">뒤로 가기</a>
         </div>
     </div>
+</div>
+<!-- JS begin -->
+<script src="/static/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript">
+    // 처음 화면 배경에 맞는 컬러 배색으로 구현하고자 함
+    // if (sessionStorage.getItem('num')) {
+    //     var bg_num = sessionStorage.getItem('num');
+    //     console.log(bg_num);
+    // }
+    $('li:eq(0)').addClass("firstChild");
 
-    <!-- FEATURES 1 -->
-    <div class="page-section">
-        <div class="fes1-cont text-center wow fadeIn">
-            <div class="font-32 font-black sm-mt-40 sm-mb-40">
-                이번 여행은
-                <br><br>
-                <b id="changingTag" class="underline">                   </b> 여행이고 싶다.
-            </div>
-            <div class="sm-mt-40 sm-mb-40">
-                <button class="button medium thin blue btn-margin btn-square">힐링되는</button>
-                <button class="button medium thin blue btn-margin btn-square">열정적인</button>
-                <button class="button medium thin blue btn-margin btn-square">유익한</button>
-            </div>
-            <div class="sm-mt-40 sm-mb-40">
-                <button id="nextBtn" class="button medium thin blue btn-margin ">다음</button>
-                <br>
-                <a id="prevBtn" class="text-underline" href="javascript:window.history.go(-1);">뒤로 가기</a>
-            </div>
-        </div>
-    </div>
-    <!-- JS begin -->
+    // 문구 변경 관련 제이쿼리
+    var existingText = $('#changingTag').text();
 
-    <!-- jQuery  -->
-    <script src="/static/js/jquery-1.11.2.min.js"></script>
+    $(".btn-square").on({ //이벤트 바인딩
+        mouseenter: function () {
+            var innerText = $(this).text();
+            $('#changingTag').html('   ' + innerText + '   ');
+        },
+        mouseleave: function () {
+            $('#changingTag').html(existingText);
+        },
+        click: function () {
+            var innerText = $(this).text();
+            $('#changingTag').html('   ' + innerText + '   ');
+            existingText = '   ' + innerText + '   ';
 
-    <script type="text/javascript">
-        // 처음 화면 배경에 맞는 컬러 배색으로 구현하고자 함
-        // if (sessionStorage.getItem('num')) {
-        //     var bg_num = sessionStorage.getItem('num');
-        //     console.log(bg_num);
-        // }
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+            } else {
+                $(this).addClass('active');
+                $(this).siblings().removeClass('active');
+            };  
+        }
+    })
 
-        // 문구 변경 관련 제이쿼리
-        var existingText = $('#changingTag').text();
-
-        $(".btn-square").on({ //이벤트 바인딩
-            mouseenter: function () {
-                var innerText = $(this).text();
-                $('#changingTag').html('   ' + innerText + '   ');
-            },
-            mouseleave: function () {
-                $('#changingTag').html(existingText);
-            },
-            click: function () {
-                var innerText = $(this).text();
-                $('#changingTag').html('   ' + innerText + '   ');
-                existingText = '   ' + innerText + '   ';
-
-                if ($(this).hasClass('active')) {
-                    $(this).removeClass('active');
-                } else {
-                    $(this).addClass('active');
-                    $(this).siblings().removeClass('active');
-                };  
-            }
-        })
-
-        // 다음 버튼 
-        $("#nextBtn").on("click", function () {
-            var sentiment = $('#changingTag').text().trim();
-            sessionStorage.setItem("sentiment", sentiment);
-            location.href = '/2';
-        })
-    </script>
-
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/static/js/bootstrap.min.js"></script>
-    <!-- MAGNIFIC POPUP -->
-    <script src='/static/js/jquery.magnific-popup.min.js'></script>
-    <!-- NAV -->
-    <script src="/static/js/jquery.nav.js"></script>
-    <!-- PORTFOLIO SCRIPTS -->
-    <script src="/static/js/isotope.pkgd.min.js"></script>
-    <script src="/static/js/imagesloaded.pkgd.min.js"></script>
-    <script src="/static/js/masonry.pkgd.min.js"></script>
-    <!-- COUNTER -->
-    <script src="/static/js/jquery.countTo.js"></script>
-    <!-- APPEAR -->
-    <script src="/static/js/jquery.appear.js"></script>
-    <!-- OWL CAROUSEL -->
-    <script src="/static/js/owl.carousel.min.js"></script>
-    <!-- PARALLAX -->
-    <script src="/static/js/jquery.stellar.min.js"></script>
-    <!-- TEXT ROTATOR -->
-    <script src="/static/js/text-rotator.js"></script>
-    <!-- MAIN SCRIPT -->
-    <script src="/static/js/main.js"></script>
-    <!-- JS end -->
-</body>
-
-</html>
+    // 다음 버튼 
+    $("#nextBtn").on("click", function () {
+        var sentiment = $('#changingTag').text().trim();
+        sessionStorage.setItem("sentiment", sentiment);
+        location.href = '/2';
+    })
+</script>

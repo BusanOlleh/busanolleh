@@ -1,104 +1,37 @@
-<!DOCTYPE html>
-<!--
-	Theme Name: HASWELL
-	Description: HTML/CSS 
-	Author: ABCgomel 
-	Designed & Coded by ABCgomel
--->
-<html lang="ko">
-
-<head>
-  <title>부산올래?</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- CSS -->
-  <!-- BOOTSTRAP -->
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-  <!-- GOOGLE FONT -->
-  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700%7COpen+Sans:400,300,700' rel='stylesheet'
-    type='text/css'>
-  <!-- ICONS ELEGANT FONT & FONT AWESOME & LINEA ICONS -->
-  <link rel="stylesheet" href="/static/css/icons-fonts.css">
-  <!-- TEXT ROTATOR -->
-  <link rel="stylesheet" href="/static/css/text-rotator.css">
-  <!-- CSS THEME -->
-  <link rel="stylesheet" href="/static/css/style.css">
-  <!-- ANIMATE -->
-  <link rel='stylesheet' href="/static/css/animate.min.css">
-  <!-- FAVICONS -->
-  <link rel="shortcut icon" href="/static/images/favicon.png">
-  <!-- CSS end -->
-  <!-- JS begin some js files in bottom of file-->
-</head>
-
-<body>
-  <!-- LOADER -->
-  <div id="loader-overflow">
-    <div id="loader3"></div>
-  </div>
-
-  <div id="wrap" class="boxed ">
-    <div class="header-transporent-bg-black">
-
-      <!-- HEADER -->
-      <header id="nav" class="header header-1 black-header affix-on-mobile">
-        <div class="header-wrapper">
-          <div class="container-m-30 clearfix">
-            <div class="logo-row">
-              <!-- LOGO -->
-              <div class="logo-container-2">
-                <div class="logo-2">
-                  <a href="/" class="clearfix">
-                    <img src="/static/images/logo.png" class="logo-img" alt="Logo">
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <!-- STATIC MEDIA IMAGE -->
-      <div id="background" class="sm-img-bg-fullscr parallax-section" data-stellar-background-ratio="0.5">
-        <div class="container sm-content-cont text-center js-height-fullscr">
-          <div class="sm-cont-middle">
-            <!-- OPACITY container -->
-            <div id="main-box" class="main-box-bg">
-              <!-- LAYER NR. 1 -->
-              <h1 class="cd-headline zoom font-white-sm norm-30-wide sm-mb-20">
-                <span class="cd-words-wrapper waiting">
-                  <b class="is-visible font font-white">힐링 하고 싶은</b>
-                  <b class="font font-white">사랑 하고 싶은</b>
-                  <b class="font font-white">같이 걷고 싶은</b>
-                  <b class="font font-white">행복 하고 싶은</b>
-                </span>
-              </h1>
-              <!-- LAYER NR. 2 -->
-              <div class="font-white-sm light-100-wide sm-mb-40 sm-mt-40">
-                <span class="busan">부산올래?</span>
-              </div>
-              <!-- LAYER NR. 3 -->
-              <div>
-                <button class="button medium tp-button white" style="width: 210px; margin: 10px 30px;"
-                  onclick="clickScrollBtn()">
-                  <a style="font-size: 20px; ">서비스 소개😎</a>
-                </button>
-                <button class="button medium tp-button white" style="width: 210px; margin: 10px 30px;"
-                  onclick="location.href='/1'">
-                  <a style="font-size: 20px;">시작하기😝</a>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- SCROLL ICON -->
-        <div class="local-scroll-cont font-white">
-          <a id="nextBtn" href="#about" class="scroll-down smooth-scroll">
-            <div class="icon icon-arrows-down"></div>
-          </a>
-        </div>
-      </div>
+{% include 'header.html' %}
+<!-- STATIC MEDIA IMAGE -->
+<div id="background" class="sm-img-bg-fullscr parallax-section js-height-fullscr" data-stellar-background-ratio="0.5">
+  <!-- OPACITY container -->
+  <div id="main-box" class="main-box-bg ">
+    <!-- LAYER NR. 1 -->
+    <div class="cd-headline zoom font-white-sm font-8 box-item">
+      <span class="cd-words-wrapper waiting">
+        <b class="is-visible font font-white">힐링 하고 싶은</b>
+        <b class="font font-white">사랑 하고 싶은</b>
+        <b class="font font-white">같이 걷고 싶은</b>
+        <b class="font font-white">행복 하고 싶은</b>
+      </span>
+      </h1>
+    </div>
+    <!-- LAYER NR. 2 -->
+    <div class="font-white-sm light-100-wide box-item">
+      <span id="txt1" class="busan"></span>
+      <span id="txt2" class="busan" style="align-self: flex-end;">?</span>
+    </div>
+    <!-- LAYER NR. 3 -->
+    <div style="margin:auto;">
+      <button  id="txt3" class="button medium tp-button white button-0" onclick="clickScrollBtn()">
+        <a>서비스 소개😎</a>
+      </button>
+      <button  id="txt4" class="button medium tp-button white button-0" onclick="location.href='/1'">
+        <a>시작하기😝</a>
+      </button>
+    </div>
+    <!-- SCROLL ICON -->
+    <div class="local-scroll-cont font-white">
+      <a id="nextBtn" href="#about" class="scroll-down smooth-scroll">
+        <div class="icon icon-arrows-down"></div>
+      </a>
     </div>
   </div>
   <!-- ABOUT/INTRODUCTION -->
@@ -213,60 +146,48 @@
         <!--end of row-->
       </div>
     </div>
-  </div>
-  <!-- BACK TO TOP -->
-  <p id="back-top">
-    <a href="#top" title="Back to Top"><span class="icon icon-arrows-up"></span></a>
-  </p>
+    <!-- BACK TO TOP -->
+    <p id="back-top">
+      <a href="#top" title="Back to Top"><span class="icon icon-arrows-up"></span></a>
+    </p>
 
   </div><!-- End BG -->
-  </div><!-- End wrap -->
+</div><!-- End wrap -->
 
-  <!-- JS begin -->
-  <script>
-    function clickScrollBtn() {
-      document.getElementById("nextBtn").click();
-    }
-  </script>
+<!-- JS begin -->
+<script>
+  function clickScrollBtn() {
+    document.getElementById("nextBtn").click();
+  }
+</script>
 
-  <!-- jQuery  -->
-  <script src="/static/js/jquery-1.11.2.min.js"></script>
+<!-- jQuery  -->
+<script src="/static/js/jquery-1.11.2.min.js"></script>
 
-  <script type="text/javascript">
-    // 랜덤 배경 설정 (시간/월 조건 삭제)
-    let images = ['거가대교.png', '감천문화마을.png', '사하구노을정휴게소.png', '서구비석문화마을.png', '오륙도해맞이공원.png', '청사포마을등대.png', '해운대블루라인파크.png', '흰여울문화마을.png', '해운대블루라인파크2.png', '흰여울문화마을2.png', '부산장림포구부네치아.png', '광안리.png', '다대포_생태탐방로.png', '다대포꿈의낙조분수.png', '다대포아미산전망대.png', '동구초량이바구길.png', '부산영화의전당.png', '부산요트투어.png', '감천문화마을_밤.png', '황령산전망대.png'];
-    const num = Math.floor(Math.random() * images.length)
-    $('#background').css({ 'background-image': 'url(/static/images/background/' + images[num] + ')' });
-    if (num <= 9) {
-      bgcolor = 'rgba(255,255,255,0.3)';
-    } else { bgcolor = 'rgba(0,0,0,0.3)'; }
-    $('#main-box').css({ 'background-color': bgcolor });
-    console.log(num)
-    sessionStorage.setItem('num', num);
-  </script>
+<script type="text/javascript">
+  function resize() {
+      if (window.innerWidth < window.innerHeight) {
+          $('.main-box-bg').css({'height': '60vh', 'margin': '20vh 5vw'});
+          $('.busan').css({'font-size':'7rem', 'letter-spacing':'0.1rem'});
+          $('.button-0').css({'width':'56vw'});
+          $('#txt1').html('부산 <br> 올래');
 
-
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="/static/js/bootstrap.min.js"></script>
-  <!-- MAGNIFIC POPUP -->
-  <script src='/static/js/jquery.magnific-popup.min.js'></script>
-  <!-- PORTFOLIO SCRIPTS -->
-  <script src="/static/js/isotope.pkgd.min.js"></script>
-  <script src="/static/js/imagesloaded.pkgd.min.js"></script>
-  <script src="/static/js/masonry.pkgd.min.js"></script>
-  <!-- COUNTER -->
-  <script src="/static/js/jquery.countTo.js"></script>
-  <!-- APPEAR -->
-  <script src="/static/js/jquery.appear.js"></script>
-  <!-- OWL CAROUSEL -->
-  <script src="/static/js/owl.carousel.min.js"></script>
-  <!-- PARALLAX -->
-  <script src="/static/js/jquery.stellar.min.js"></script>
-  <!-- TEXT ROTATOR -->
-  <script src="/static/js/text-rotator.js"></script>
-  <!-- MAIN SCRIPT -->
-  <script src="/static/js/main.js"></script>
-  <!-- JS end -->
-</body>
-
-</html>
+      } else {
+          $('.main-box-bg').css({ 'height': '60vh', 'width':'60vw', 'margin': '20vh auto' });
+          $('.busan').css({ 'font-size': '14vh', 'letter-spacing': '1rem' });
+          $('#txt1').html('부산올래');
+      }
+  }
+  resize();
+  $(window).resize(function () { resize(); });
+  // 랜덤 배경 설정 (시간/월 조건 삭제)
+  let images = ['거가대교.png', '감천문화마을.png', '사하구노을정휴게소.png', '서구비석문화마을.png', '오륙도해맞이공원.png', '청사포마을등대.png', '해운대블루라인파크.png', '흰여울문화마을.png', '해운대블루라인파크2.png', '흰여울문화마을2.png', '부산장림포구부네치아.png', '광안리.png', '다대포_생태탐방로.png', '다대포꿈의낙조분수.png', '다대포아미산전망대.png', '동구초량이바구길.png', '부산영화의전당.png', '부산요트투어.png', '감천문화마을_밤.png', '황령산전망대.png'];
+  const num = Math.floor(Math.random() * images.length)
+  $('#background').css({ 'background-image': 'url(/static/images/background/' + images[num] + ')' });
+  if (num <= 9) {
+    bgcolor = 'rgba(255,255,255,0.3)';
+  } else { bgcolor = 'rgba(0,0,0,0.3)'; }
+  $('#main-box').css({ 'background-color': bgcolor });
+  console.log(num)
+  sessionStorage.setItem('num', num);
+</script>
