@@ -11412,7 +11412,7 @@ ul#flickr-feeds li a, ul#flickr-sfeeds li a img {
   border-style: double; 
   background-color: rgba(0,0,0,0.3);
   height: 60vh;
-  margin: 20vh 15vw;
+  margin: 20vh auto;
   text-align: center;
   flex-direction: column;
 }
@@ -11639,5 +11639,4 @@ body{
   width: 12vw;
   line-height: 100%;
   margin: 1rem;
-  width: 
 }
