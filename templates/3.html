@@ -1,324 +1,412 @@
-        {% include 'header.html' %}
-        {% include 'progressbar.html' %}
-        <!-- FEATURES 1 -->
-        <div class="page-section">
-            <div class="fes1-cont text-center">
-                <!-- <div class="fes1-main-title-cont"> -->
-                <div class="font-black wow fadeInDown sm-mb-50">
-                    테스트 중입니다... {{ a }}
-                </div>
-                <div class="row sm-mb-40">
-                    <div class="col-sm-6 col-md-6">
-                        <div class="map-box wow fadeIn" data-wow-delay="500ms"
-                            style="visibility: visible; animation-delay: 500ms; animation-name: fadeIn;">
-                            <div id="map" class="map"></div>
-                            <button class="btn1" type="button"><img style="height: 4vh;"
-                                    src="/static/images/chevron-left-solid.svg" /></span></button>
-                            <button class="btn2" type="button"><img style="height: 4vh;"
-                                    src="/static/images/chevron-right-solid.svg" /></span></button>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 wow fadeIn content-wrap" data-wow-delay="1000ms"
-                        style="visibility: visible; animation-delay: 1000ms; animation-name: fadeIn;">
-                        {% for i in range(5) %}
-                        <div class="font-100-web col-md-2">{{i+1}}</div>
-                        <div class="content-box text-left col-md-10">
-                                <div class="post-prev-title">
-                                    <h3 id="name{{i+1}}"></h3>
-                                </div>
-                                <div class="post-prev-info">
-                                    {% for j in range(5) %}
-                                    <span id="tag{{i+1}}-{{j}}"></span>
-                                    {% endfor %}
-                                </div>
-                            <div>
-                                <div id="addr{{i+1}}" class="addr-pd pd-ctt"></div>
-                            </div>
-                            <div class="row" style="display: flex; flex-direction: column;">
-                                <div style="display: flex; flex-direction: row;">
-                                    <div class="col-sm-4 col-md-4 pd-ctt">
-                                        <b>BUS</b>
-                                    </div>
-                                    <div class="pd-ctt">
-                                        <span id="bus{{i+1}}"></span>
-                                    </div>
-                                </div>
-                                <div style="display: flex; flex-direction: row;">
-                                    <div class="col-sm-4 col-md-4 pd-ctt">
-                                        <b>SUBWAY</b>
-                                    </div>
-                                    <div class="pd-ctt">
-                                        <span id="subway{{i+1}}"></span>
-                                    </div>
-                                </div>
-                                <div style="display: flex; flex-direction: row;">
-                                    <div class="col-sm-4 col-md-4 pd-ctt">
-                                        <b>PARKING</b>
-                                    </div>
-                                    <div class="pd-ctt">
-                                        <span id="parking{{i+1}}"></span> (<span id="parking_dist{{i+1}}"></span>)
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="sm-mb-10 addr-pd pd-ctt"><b>추천 맛집 & 카페</b></div>
-                            </div>
-                            <div>
-                                <div class="row" style="display: flex; flex-direction: row;">
-                                    {% for k in range(3) %}
-                                    <div class="text-center pd-ctt" style="flex:1;">
-                                        <span id="rcn{{i+1}}-{{k+1}}"></span><br>
-                                        <span id="rcd{{i+1}}-{{k+1}}"></span>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="wow fadeInDown sm-mb-40" data-wow-delay="1500ms"
-                    style="visibility: visible; animation-delay: 1500ms; animation-name: fadeIn;">
-                    <a id="prev1" class="no-line" onclick="location.href='/1'">✔️처음부터 다시 선택</a>
-                    <span class="slash-divider">/</span>
-                    <a id="prev2" class="no-line" onclick="location.href='/2'">✔️태그만 다시 선택</a>
+{% include 'progressbar.html' %}
+<div class="page-section">
+    <div class="fes1-cont text-center">
+        <div id="textBox" class="font-black wow fadeInDown box-item"></div>
+        <div class="row" style="margin: auto 0;">
+            <div class="col-sm-6 col-md-6">
+                <div class="map-box wow fadeIn" data-wow-delay="500ms"
+                    style="visibility: visible; animation-delay: 500ms; animation-name: fadeIn;">
+                    <div id="map" class="map"></div>
+                    <button class="txt">
+                        <span id="st1">
+                            <span style="color: #5fc94f">●</span> : 힐링되는 
+                        </span> 
+                        <span id="st2">
+                            <span style="color: #e35f69">●</span> : 열정적인 
+                        </span> 
+                        <span id="st3">
+                            <span style="color: #a660db">●</span> : 유익한
+                        </span> 
+                    </button>
+                    <button class="button blue btn0" type="button">전체보기
+
+                    </button>
+                    <button class="btn1" type="button"><img style="height: 4vh;"
+                            src="/static/images/chevron-left-solid.svg" /></span></button>
+                    <button class="btn2" type="button"><img style="height: 4vh;"
+                            src="/static/images/chevron-right-solid.svg" /></span></button>
                 </div>
             </div>
+            <div class="col-sm-6 col-md-6 wow fadeIn content-wrap" data-wow-delay="1000ms"
+                style="visibility: visible; animation-delay: 1000ms; animation-name: fadeIn;">
+                {% for i in range(5) %}
+                <div class="font-100-web col-md-2">{{i+1}}</div>
+                <div class="content-box text-left col-md-10">
+                    <div class="post-prev-title">
+                        <h3 id="name{{i+1}}"></h3>
+                    </div>
+                    <div class="post-prev-info">
+                        {% for j in range(5) %}
+                        <span id="tag{{i+1}}-{{j}}"></span>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        <div id="addr{{i+1}}" class="addr-pd pd-ctt"></div>
+                    </div>
+                    <div class="row" style="display: flex; flex-direction: column;">
+                        <div style="display: flex; flex-direction: row;">
+                            <div class="col-sm-4 col-md-4 pd-ctt">
+                                <b>BUS</b>
+                            </div>
+                            <div class="pd-ctt">
+                                <span id="bus{{i+1}}"></span>
+                            </div>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                            <div class="col-sm-4 col-md-4 pd-ctt">
+                                <b>SUBWAY</b>
+                            </div>
+                            <div class="pd-ctt">
+                                <span id="subway{{i+1}}"></span>
+                            </div>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                            <div class="col-sm-4 col-md-4 pd-ctt">
+                                <b>PARKING</b>
+                            </div>
+                            <div class="pd-ctt">
+                                <span id="parking{{i+1}}"></span> (<span id="parking_dist{{i+1}}"></span>)
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="sm-mb-10 addr-pd pd-ctt"><b>추천 맛집 & 카페</b></div>
+                    </div>
+                    <div>
+                        <div class="row" style="display: flex; flex-direction: row;">
+                            {% for k in range(3) %}
+                            <div class="text-center pd-ctt" style="flex:1;">
+                                <span id="rcn{{i+1}}-{{k+1}}"></span><br>
+                                <span id="rcd{{i+1}}-{{k+1}}"></span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
+        <div class="wow fadeInDown" data-wow-delay="1500ms"
+            style="margin:auto 0; visibility: visible; animation-delay: 1500ms; animation-name: fadeIn;">
+            <a id="prev1" class="no-line" onclick="location.href='/1'">✔️처음부터 다시 선택</a>
+            <span class="slash-divider">/</span>
+            <a id="prev2" class="no-line" onclick="location.href='/2'">✔️태그만 다시 선택</a>
+        </div>
+    </div>
+</div>
 
 
-    <!-- JS begin -->
-    <!-- jQuery  -->
-    <script src="/static/js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript">
-        $('li:eq(1)').addClass("active");
-        // 지도 높이 조정 (최초 실행 + 창 크기 조정 때마다)
-        function resize() {
-            if (window.innerWidth < window.innerHeight) {
-                $('.fes1-cont').css('padding', '3vh 3vw');
-                $('.sm-mb-50').css('margin-bottom', '1vh');
-                $('.content-wrap').css('height', '35vh');
-                $('.font-100-web').addClass('font-100-mobile');
-                $('.font-100-web').removeClass('font-100-web col-md-2');
-
-            } else { 
-                $('.fes1-cont').css('padding', '5vh 10vw');
-                $('.sm-mb-50').css('margin-bottom', '5vh');
-                $('.content-wrap').css('height', '60vh');                
-                $('.font-100-web').removeClass('font-100-mobile');
-                $('.font-100-web').addClass('font-100-web col-md-2');
-            } 
-            const wrapHeight = $('.content-wrap').height() * 0.99;
-            $('.map').css('height', wrapHeight);
-        }
-        resize(); //최초 실행 시
-        $(window).resize(function () {resize();});
-        $('.content-box').css('height', $('content-wrap').height());
-
-
-        // 세션에 담은 감성, 태그 input 서버에 전달하고 값 받기(Ajax)
-        let sentiment = sessionStorage.getItem('sentiment');
-        let tag = sessionStorage.getItem('tag');
-        let tagNameList = ['야경','꽃','포토존','바다','산','공원','드라이브','산책','역사','종교','문화','액티비티','아이','이색체험','봄축제','여름축제','가을축제','겨울축제'];
-
-        let tagList = [];
-        for (let i = 0; i < tag.length; i++) {
-            if (tag[i] == 1) {
-                tagList.push(tagNameList[i]);
-            }
-        }
-    
-        let data;
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json',
-            url: '/point',
-            async: false, 
-            dataType: 'json',
-            data: JSON.stringify({ 'sentiment': sentiment, 'tag': tag }), //감성값과 01로 이루어진 str타입의 태그값을 전달한다.
-            success: function (res) {
-                data = res;
-            }
-        });
-        obj = JSON.parse(data);
-        l = Object.keys(obj); // l은 obj의 key list이며, str 타입의 keyword들이 담겨있다.
-
-        // obj의 key로 접근해서 그 밑의 속성값을 가져온다.
-        let ts_tag_list;
-        let len_tags;
-        let parking_dist;
-        let cluster;
-
-        {% for k in range(5) %} //5개 관광지에서 1개씩 해당 id에 배정해서 값을 뿌린다.
-        let name{{k+1}} = obj[l[{{k}}]].name; //관광지명
-        $('#name{{k+1}}').html(name{{k+1}});
-
-        cluster = obj[l[{{k}}]].cluster //클러스터
-        if (cluster == 0){
-            cluster = '힐링되는'
-        } else if (cluster == 1){
-            cluster = '열정적인'
-        } else if (cluster == 2){
-            cluster = '유익한'
-        }
-        $('#tag{{k+1}}-0').html('#' + cluster); //일치 클러스터 태그 강조 추가
-        if ( cluster == sentiment ) {
-            $('#tag{{k+1}}-0').addClass('text_em');
-        }
-
-        ts_tag_list = obj[l[{{ k }}]].tags.split(" ") //태그 개수만큼 반복, 일치 강조 추가
-        len_tags = ts_tag_list.length; 
-        for (let i = 0; i < len_tags; i++) {
-            tag_name = '#tag{{k+1}}-'+(i+1);
-            $(tag_name).html(' #' + ts_tag_list[i]);
-            if (tagList.join().includes(ts_tag_list[i])){
-                $(tag_name).addClass('text_em');
-            }
-        }
-
-        $('#addr{{k+1}}').html(obj[l[{{ k }}]].addr);
-        $('#bus{{k+1}}').html(obj[l[{{ k }}]].bus);
-        $('#subway{{k+1}}').html(obj[l[{{ k }}]].subway);
-        $('#parking{{k+1}}').html(obj[l[{{ k }}]].parking);
-        parking_dist = obj[l[{{ k }}]].parking_dist
-        if (parking_dist < 500) {
-            pd_text = '500m 이내'
-        } else if (parking_dist >= 500 & obj[l[{{ k }}]].parking_dist < 1000) {
-            pd_text = '1km 이내'
+<!-- JS begin -->
+<!-- jQuery  -->
+<script src="/static/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript">
+    $('li:eq(1)').addClass("active");
+    // 지도 높이 조정 (최초 실행 + 창 크기 조정 때마다)
+    function resize() {
+        if (window.innerWidth < window.innerHeight) {
+            $('.fes1-cont').css('padding', '3vh 3vw');
+            $('.sm-mb-50').css('margin-bottom', '1vh');
+            $('.content-wrap').css('height', '35vh');
+            $('.font-100-web').addClass('font-100-mobile');
+            $('.font-100-web').removeClass('font-100-web col-md-2');
+            $('.slash-divider').html('<br>');
+            
         } else {
-            pd_text = '1km 이상'
+            $('.fes1-cont').css('padding', '5vh 10vw');
+            $('.sm-mb-50').css('margin-bottom', '5vh');
+            $('.content-wrap').css('height', '60vh');
+            $('.font-100-web').removeClass('font-100-mobile');
+            $('.font-100-web').addClass('font-100-web col-md-2');
+            $('.content-box').css('height', $('.content-wrap').height());
+            $('.slash-divider').html('/');
+
         }
-        $('#parking_dist{{k+1}}').html(pd_text);
-        {% for q in range(3) %}
-        $('#rcn{{k+1}}-{{q+1}}').html(obj[l[{{ k }}]].n{{q+1}});
-        rcd = obj[l[{{ k }}]].d{{q+1}}
-        if (rcd >= 1000){
-            rcd = Math.ceil(rcd / 10) * 10 / 1000 +' km'
-        }else {
-            rcd = obj[l[{{ k }}]].d{{q+1}}+' m'
+        const wrapHeight = $('.content-wrap').height() * 0.99;
+        $('.map').css('height', wrapHeight);
+    }
+    resize(); //최초 실행 시
+    $(window).resize(function () { resize(); });
+    $('.content-box').css('height', $('content-wrap').height());
+
+
+    // 세션에 담은 감성, 태그 input 서버에 전달하고 값 받기(Ajax)
+    let sentiment = sessionStorage.getItem('sentiment');
+    if (sentiment == '힐링되는'){
+        $('#st1').addClass('txtDeco');
+    }else if(sentiment == '열정적인'){
+        $('#st2').addClass('txtDeco');
+    }else if(sentiment == '유익한'){
+        $('#st3').addClass('txtDeco');
+    }
+    let tag = sessionStorage.getItem('tag');
+    let tagNameList = ['야경', '꽃', '포토존', '바다', '산', '공원', '드라이브', '산책', '역사', '종교', '문화', '액티비티', '아이', '이색체험', '봄축제', '여름축제', '가을축제', '겨울축제'];
+
+    let tagList = [];
+    let tagCnt = 0;
+    for (let i = 0; i < tag.length; i++) {
+        if (tag[i] == 1) {
+            tagList.push(tagNameList[i]);
+            tagCnt += 1;
         }
-        $('#rcd{{k+1}}-{{q+1}}').html(rcd);
-        {% endfor %}
-        {% endfor %}
+    }
 
-        // console 확인
-        console.log('sentiment : ' + sentiment + ' / tag : ' + tag + ' \n name : ' + obj[l[0]].name + '/ tags : ' + obj[l[0]].tags + '/ 추천 여부 : ' + obj[l[0]].rcmded + '/ cluster : ' + obj[l[0]].cluster + '/ point : ' + obj[l[0]].point + '\n' +
-            ' name : ' + obj[l[1]].name + '/ tags : ' + obj[l[1]].tags + '/ 추천 여부 : ' + obj[l[1]].rcmded + '/ cluster : ' + obj[l[1]].cluster + '/ point : ' + obj[l[1]].point + '\n' +
-            ' name : ' + obj[l[2]].name + '/ tags : ' + obj[l[2]].tags + '/ 추천 여부 : ' + obj[l[2]].rcmded + '/ cluster : ' + obj[l[2]].cluster + '/ point : ' + obj[l[2]].point + '\n');
+    let data;
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: '/point',
+        async: false,
+        dataType: 'json',
+        data: JSON.stringify({ 'sentiment': sentiment, 'tag': tag }), //감성값과 01로 이루어진 str타입의 태그값을 전달한다.
+        success: function (res) {
+            data = res;
+        }
+    });
+    obj = JSON.parse(data);
+    l = Object.keys(obj); // l은 obj의 key list이며, str 타입의 keyword들이 담겨있다.
 
-    </script>
+    // obj의 key로 접근해서 그 밑의 속성값을 가져온다.
+    let ts_tag_list;
+    let len_tags;
+    let parking_dist;
+    let cluster;
+    let match_cluster;
+    let show_not_fail;
+    let c;
 
-    <script type="text/javascript"
-        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ibvfgt8xex"></script>
-    <script>
-        // 지도 높이 조정 후 지도 load 하도록 순서 변경
-        let mapOptions = {
-            center: new N.LatLng(35.198362, 129.053922),
-            zoom: 11,
-            padding: 100
-        };
-        let map = new N.Map('map', mapOptions);
+    {% for k in range(5) %} //5개 관광지에서 1개씩 해당 id에 배정해서 값을 뿌린다.
+    let name{{k+1}} = obj[l[{{k}}]].name; //관광지명
+    $('#name{{k+1}}').html(name{{k+1}});
 
-        let arr_lat = []
-        let arr_lon = []
-        
-        let off2 = ($('.content-wrap').offset().top) * 1.04
+    cluster = obj[l[{{k}}]].cluster //클러스터
+    if (cluster == 0) {
+        cluster = '힐링되는'
+    } else if (cluster == 1) {
+        cluster = '열정적인'
+    } else if (cluster == 2) {
+        cluster = '유익한'
+    }
+    $('#tag{{k+1}}-0').html('#' + cluster); //일치 클러스터 태그 강조 추가
+    if (cluster == sentiment) {
+        $('#tag{{k+1}}-0').addClass('text_em');
+        match_cluster = true;
+    }
 
-        {% for m in range(5) %}
-            let cluster{{m+1}} = obj[l[{{ m }}]].cluster
-            let latlon{{m+1}} = new N.LatLng(obj[l[{{m}}]].lat, obj[l[{{m}}]].lon);
-            let markerOptions{{m+1}} = {
-                position: latlon{{m+1}},
-                map: map,
-                title: name{{m+1}},
-                icon: {
-                    url: './static/images/'+cluster{{m+1}}+'-{{m+1}}.png',
-                    size: new N.Size(36,36),
-                    scaledSize: new N.Size(36, 36),
-                    origin: new N.Point(0, 0),
-                    anchor: new N.Point(18,36)
-                }
-            };
-            let offset{{m+1}} = $('#name{{m+1}}').offset().top
+    ts_tag_list = obj[l[{{k}}]].tags.trim().split(" ") //태그 개수만큼 반복, 일치 강조 추가
+    len_tags = ts_tag_list.length;
+    for (let i = 0; i < len_tags; i++) {
+        tag_name = '#tag{{k+1}}-' + (i + 1);
+        $(tag_name).html(' #' + ts_tag_list[i]);
+        if (tagList.join().includes(ts_tag_list[i])) {
+            $(tag_name).addClass('text_em');
+        }
+    };
 
-            arr_lat.push(obj[l[{{m}}]].lat);
-            arr_lon.push(obj[l[{{m}}]].lon);
-            let marker{{m+1}} = new N.Marker(markerOptions{{m+1}});
-
-            let infowindow{{m+1}} = new naver.maps.InfoWindow({
-                content: '<div class="iw_pd"><b>'+name{{m+1}}+'</b></div>',
-                backgroundColor: 'transparant',
-                borderWidth: 0,
-                disableAnchor: true,
-                pixelOffset: new N.Point(0, 70),
-            });
-
-            N.Event.addListener(marker{{m+1}}, 'click', function () {
-                $('.content-wrap').animate({scrollTop : offset{{m+1}} - offset1}, 200, 'swing');
-                infowindow{{m+1}}.open(map, marker{{m+1}});
-                map.setZoom(15);
-                map.setCenter(latlon{{m+1}});
-            });
-        {% endfor %}
-        
-        let show_fit_5 = new N.LatLngBounds(
-            new N.LatLng(Math.min.apply(null, arr_lat)-0.001, Math.min.apply(null, arr_lon)-0.1),
-            new N.LatLng(Math.max.apply(null, arr_lat)+0.001, Math.max.apply(null, arr_lon)+0.1));
-
-        map.fitBounds(show_fit_5); 
-
-        let loc;
-        sessionStorage.setItem("loc", 0);
-        {% for p in range(1,3) %}
-        $(".btn{{p}}").on("click", function () { 
-            loc = Number(sessionStorage.getItem("loc"));
-            {% if p == 1 %}
-            loc -= 1;
-            if (loc < 1){
-                loc = 5
-            } 
-            {% elif p == 2 %}
-            loc += 1;
-            if (loc > 5){
-                loc = 1
-            } 
-            {% endif %}
-            {% for n in range(5) %}
-            if (loc == {{n+1}}){
-                $('.content-wrap').animate({scrollTop : offset{{n+1}} - offset1}, 200);
-                //$('.content-wrap').scrollTop(offset{{n+1}} - offset1);
-                infowindow{{n+1}}.open(map, eval("marker"+loc));
-                map.setZoom(15);
-                map.setCenter(eval("latlon"+loc));
+    c = 0;
+    for (let j =0; j< tagCnt; j++){
+        if(obj[l[{{k}}]].tags.includes(tagList[j])) {
+            c += 1;
+            if (c == tagCnt){
+                show_not_fail = true;
             }
-            {% endfor %}
-            sessionStorage.setItem("loc", loc);
-        });
-        {% endfor %}
-
-        //참고 : https://gurtn.tistory.com/129, https://velog.io/@sss5793/Intersection-Observer-API
-        let boxList = document.querySelectorAll('.content-box');
-
-        let options = {
-            root: null, // viewport
-            rootMargin: "0px",
-            threshold: 0.5,  // 50%가 viewport에 들어와 있어야 callback 실행
         }
+    };
+    if(show_not_fail){
+        $('#textBox').html('선택지와 일치하는 관광지를 확인해보세요!')
+    }else {
+        $('#textBox').html('선택지와 가장 유사한 관광지를 확인해보세요!')
+    }
 
-        {% for r in range(5) %}
-        let observer{{r}} = new IntersectionObserver(entries => {
+    $('#addr{{k+1}}').html(obj[l[{{k}}]].addr);
+    $('#bus{{k+1}}').html(obj[l[{{k}}]].bus);
+    $('#subway{{k+1}}').html(obj[l[{{k}}]].subway);
+    $('#parking{{k+1}}').html(obj[l[{{k}}]].parking);
+    parking_dist = obj[l[{{k}}]].parking_dist
+    if (parking_dist < 500) {
+        pd_text = '500m 이내'
+    } else if (parking_dist >= 500 & obj[l[{{k}}]].parking_dist < 1000) {
+        pd_text = '1km 이내'
+    } else {
+        pd_text = '1km 이상'
+    }
+    $('#parking_dist{{k+1}}').html(pd_text);
+    {% for q in range(3) %}
+    $('#rcn{{k+1}}-{{q+1}}').html(obj[l[{{k}}]].n{{q+1}});
+    rcd = obj[l[{{k}}]].d{{q+1}}
+    if (rcd >= 1000) {
+        rcd = Math.ceil(rcd / 10) * 10 / 1000 + ' km'
+    } else {
+        rcd = obj[l[{{k}}]].d{{q+1}} +' m'
+        }
+    $('#rcd{{k+1}}-{{q+1}}').html(rcd);
+    {% endfor %}
+    {% endfor %}
+
+    // console 확인
+    console.log('sentiment : ' + sentiment + ' / tag : ' + tag + ' \n name : ' + obj[l[0]].name + '/ tags : ' + obj[l[0]].tags + '/ 추천 여부 : ' + obj[l[0]].rcmded + '/ cluster : ' + obj[l[0]].cluster + '/ point : ' + obj[l[0]].point + '\n' +
+        ' name : ' + obj[l[1]].name + '/ tags : ' + obj[l[1]].tags + '/ 추천 여부 : ' + obj[l[1]].rcmded + '/ cluster : ' + obj[l[1]].cluster + '/ point : ' + obj[l[1]].point + '\n' +
+        ' name : ' + obj[l[2]].name + '/ tags : ' + obj[l[2]].tags + '/ 추천 여부 : ' + obj[l[2]].rcmded + '/ cluster : ' + obj[l[2]].cluster + '/ point : ' + obj[l[2]].point + '\n');
+
+</script>
+
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ibvfgt8xex"></script>
+<script>
+    // 지도 높이 조정 후 지도 load 하도록 순서 변경
+    let mapOptions = {
+        center: new N.LatLng(35.198362, 129.053922),
+        zoom: 11,
+        padding: 100
+    };
+    let map = new N.Map('map', mapOptions);
+    
+    let start = 0;
+
+    let arr_lat = []
+    let arr_lon = []
+
+    let off2 = ($('.content-wrap').offset().top) * 1.04
+
+    {% for m in range(5) %}
+    let cluster{{ m+1}} = obj[l[{{ m }}]].cluster
+    let latlon{{ m+1}} = new N.LatLng(obj[l[{{ m }}]].lat, obj[l[{{ m }}]].lon);
+    let markerOptions{{ m+1}} = {
+        position: latlon{{ m + 1 }},
+        map: map,
+            title: name{{ m + 1 }},
+        icon: {
+            url: './static/images/' + cluster{{ m + 1 }} +'-{{m+1}}.png',
+                size: new N.Size(36, 36),
+                    scaledSize: new N.Size(36, 36),
+                        origin: new N.Point(0, 0),
+                            anchor: new N.Point(18, 36)
+        }
+    };
+    let offset{{ m+1}} = $('#name{{m+1}}').offset().top
+
+    arr_lat.push(obj[l[{{ m }}]].lat);
+    arr_lon.push(obj[l[{{ m }}]].lon);
+
+    let marker{{ m+1}} = new N.Marker(markerOptions{{ m+ 1}});
+
+    let infowindow{{ m+1}} = new naver.maps.InfoWindow({
+        content: '<div class="iw_pd"><b>' + name{{ m+ 1}}+'</b></div>',
+        backgroundColor: 'transparant',
+        borderWidth: 0,
+        disableAnchor: true,
+        pixelOffset: new N.Point(0, 70),
+            });
+    {% endfor %}
+    
+    let show_fit_5 = new N.LatLngBounds(
+        new N.LatLng(Math.min.apply(null, arr_lat) - 0.001, Math.min.apply(null, arr_lon) - 0.13),
+        new N.LatLng(Math.max.apply(null, arr_lat) + 0.001, Math.max.apply(null, arr_lon) + 0.13));
+    
+    let loc;
+    sessionStorage.setItem("loc", 0);
+    $(".btn0").on("click", function () {
+        if ((start == 1) & (loc != 0)){
+            start = 0;
+            map.setZoom(10);
+            map.setCenter(new N.LatLng(35.198362, 129.053922));
+            infowindow1.close();
+            infowindow2.close();
+            infowindow3.close();
+            infowindow4.close();
+            infowindow5.close();
+        } else {
+            start = 1;
+            loc = Number(sessionStorage.getItem("loc"));
+            if (loc == 0){
+                loc = 1;
+            }
+            sessionStorage.setItem("loc", loc-1);
+            $('.btn2').click();
+        }
+    });
+    {% for p in range(1, 3) %}
+    $(".btn{{p}}").on("click", function () {
+        start = 1;
+        loc = Number(sessionStorage.getItem("loc"));
+        {% if p == 1 %}
+        loc -= 1;
+        if (loc < 1) {
+            loc = 5
+        }
+        {% elif p == 2 %}
+        loc += 1;
+        if (loc > 5) {
+            loc = 1
+        }
+        {% endif %}
+        {% for n in range(5) %}
+        if (loc == {{ n + 1 }}){
+            $('.content-wrap').animate({ scrollTop: offset{{ n+ 1}} - offset1}, 200);
+            //$('.content-wrap').scrollTop(offset{{n+1}} - offset1);
+            infowindow{{ n + 1 }}.open(map, eval("marker" + loc));
+            if (window.innerWidth < 768){
+                map.setZoom(12);
+            }else{
+                map.setZoom(15);
+            }
+            map.setCenter(eval("latlon" + loc));
+            }
+        {% endfor %}
+        sessionStorage.setItem("loc", loc);
+        });
+    {% endfor %}
+
+    //참고 : https://gurtn.tistory.com/129, https://velog.io/@sss5793/Intersection-Observer-API
+    let boxList = document.querySelectorAll('.content-box');
+
+    let options = {
+        root: null, // viewport
+        rootMargin: "0px",
+        threshold: 0.5,  // 50%가 viewport에 들어와 있어야 callback 실행
+    }
+
+    {% for r in range(5) %}
+    N.Event.addListener(marker{{ r+ 1}}, 'click', function () {
+        start = 1;
+        $('.content-wrap').animate({ scrollTop: offset{{ r+ 1}} - offset1}, 200, 'swing');
+        infowindow{{ r + 1 }}.open(map, marker{{ r+ 1}});
+        if (window.innerWidth < 768){
+            map.setZoom(12);
+        }else{
+            map.setZoom(15);
+        }
+        map.setCenter(latlon{{ r+ 1}});
+        sessionStorage.setItem("loc", {{r+1}});
+    });
+
+    let observer{{ r }} = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                if ((entry.isIntersecting)){
-                    infowindow{{r+1}}.open(map, marker{{r+1}});
-                    map.setZoom(15);
-                    map.setCenter(latlon{{r+1}});
+                if ((entry.isIntersecting)) {
+                    if (start == 0){
+                        map.setZoom(10);
+                        map.setCenter(new N.LatLng(35.198362, 129.053922));
+                        start = 1;
+                        //map.fitBounds(show_fit_5);
+                    }else {
+                        start = 1;
+                        if (window.innerWidth < 768){
+                            infowindow{{ r + 1 }}.open(map, marker{{ r+ 1}});
+                            map.setZoom(12);
+                            map.setCenter(latlon{{ r+1}});
+                            sessionStorage.setItem("loc", {{r+1}});
+                            
+                        }else{
+                            infowindow{{ r + 1 }}.open(map, marker{{ r+ 1}});
+                            map.setZoom(15);
+                            map.setCenter(latlon{{ r+1}});
+                            sessionStorage.setItem("loc", {{r+1}});
+                        }
+                    }
                 }
             });
         }, options);
-        
-        observer{{r}}.observe(boxList[{{r}}]);
-        {% endfor %}
-    
+        observer{{ r }}.observe(boxList[{{ r }}]);
+
+    {% endfor %}
 
 
-    </script>
+</script>

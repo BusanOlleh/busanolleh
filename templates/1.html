@@ -1,20 +1,20 @@
-{% include 'header.html' %}
 {% include 'progressbar.html' %}
 <div class="page-section">
     <div class="fes1-cont text-center wow fadeIn">
-        <div class="font-32 font-black sm-mt-40 sm-mb-40">
-            이번 여행은
-            <br><br>
-            <b id="changingTag" class="underline">                   </b> 여행이고 싶다.
+        <div id="textBox" class="font-black wow fadeIn animated box-item" >
+            좋아하는 여행 감성을 골라보세요! 🍀
         </div>
-        <div class="sm-mt-40 sm-mb-40">
-            <button class="button medium thin blue btn-margin btn-square">힐링되는</button>
-            <button class="button medium thin blue btn-margin btn-square">열정적인</button>
-            <button class="button medium thin blue btn-margin btn-square">유익한</button>
+        <div id="textBox2" class="font-black" style="margin: auto;">
+            <span>이번 여행은...</span><br>
+            <b id="changingTag" class="underline">                   </b><br><span> 여행이고 싶다.</span>
         </div>
-        <div class="sm-mt-40 sm-mb-40">
+        <div id="tags" class=" box-item">
+            <button class="button medium green thin btn-margin-1 btn-square">힐링되는</button>
+            <button class="button medium red thin btn-margin-1 btn-square">열정적인</button>
+            <button class="button medium purple thin btn-margin-1 btn-square">유익한</button>
+        </div>
+        <div class="box-item">
             <button id="nextBtn" class="button medium thin blue btn-margin ">다음</button>
-            <br>
             <a id="prevBtn" class="text-underline" href="javascript:window.history.go(-1);">뒤로 가기</a>
         </div>
     </div>
@@ -24,40 +24,94 @@
 <script type="text/javascript">
     // 처음 화면 배경에 맞는 컬러 배색으로 구현하고자 함
     // if (sessionStorage.getItem('num')) {
-    //     var bg_num = sessionStorage.getItem('num');
+    //     let bg_num = sessionStorage.getItem('num');
     //     console.log(bg_num);
     // }
     $('li:eq(0)').addClass("firstChild");
 
+    function resize() {
+        if (window.innerWidth < window.innerHeight) {
+            $('#tags').css({'flex-direction':'column'})
+            $('#textBox2').css({'font-size':'1.5em'})
+        } else {
+            $('#tags').css({'flex-direction':'row'})
+            $('#textBox2').css({'font-size':'1.8em'})
+        }
+    }
+    resize();
+    $(window).resize(function () { resize(); });
+
     // 문구 변경 관련 제이쿼리
-    var existingText = $('#changingTag').text();
+    let existingText = $('#changingTag').text();
+    let chosenColor = '#37a2d6';
+    let existingColor = '#37a2d6';
+    let colorClass = 'blue';
 
     $(".btn-square").on({ //이벤트 바인딩
         mouseenter: function () {
-            var innerText = $(this).text();
+            let innerText = $(this).text();
+            if (innerText == '힐링되는'){
+                chosenColor = '#5fc94f';
+                colorClass = 'green';
+            }else if(innerText == '열정적인'){
+                chosenColor = '#e35f69';
+                colorClass = 'red';
+            }else if(innerText == '유익한'){
+                chosenColor = '#a660db';
+                colorClass = 'purple';
+            }
             $('#changingTag').html('   ' + innerText + '   ');
+            if (innerText == '힐링되는'){
+                $('.underline').css({'border-color':'#5fc94f'});
+            }else if(innerText == '열정적인'){
+                $('.underline').css({'border-color':'#e35f69'});
+            }else if(innerText == '유익한'){
+                $('.underline').css({'border-color':'#a660db'});
+            }
+            $('.underline').css({'border-color':chosenColor});
         },
         mouseleave: function () {
             $('#changingTag').html(existingText);
+            $('.underline').css({'border-color':existingColor});
         },
         click: function () {
-            var innerText = $(this).text();
+            let innerText = $(this).text();
             $('#changingTag').html('   ' + innerText + '   ');
             existingText = '   ' + innerText + '   ';
 
+            if (innerText == '힐링되는'){
+                chosenColor = '#5fc94f';
+                colorClass = 'green';
+            }else if(innerText == '열정적인'){
+                chosenColor = '#e35f69';
+                colorClass = 'red';
+            }else if(innerText == '유익한'){
+                chosenColor = '#a660db';
+                colorClass = 'purple';
+            }
+            
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
+                existingColor = '#37a2d6';
+                existingText = '                   ';
             } else {
                 $(this).addClass('active');
+                $(this).addClass(chosenColor);
                 $(this).siblings().removeClass('active');
+                existingColor = chosenColor;
             };  
+            $('.underline').css({'border-color':existingColor});
         }
     })
 
     // 다음 버튼 
     $("#nextBtn").on("click", function () {
-        var sentiment = $('#changingTag').text().trim();
-        sessionStorage.setItem("sentiment", sentiment);
-        location.href = '/2';
+        let sentiment = $('#changingTag').text().trim();
+        if (sentiment){
+            sessionStorage.setItem("sentiment", sentiment);
+            location.href = '/2';
+        } else {
+            $('#textBox').html('감성을 골라야 넘어갈 수 있어요😥')
+        }
     })
 </script>

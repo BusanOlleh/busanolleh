@@ -1,133 +1,163 @@
-        {% include 'header.html' %}
-        {% include 'progressbar.html' %}
-        <!-- FEATURES 1 -->
-        <div class="page-section">
-            <div class="fes1-cont text-center">
-                <div class="font-26 font-black wow fadeIn sm-mt-40 sm-mb-40">
-                    원하시는 태그를 선택해 보세요! 😊
+{% include 'progressbar.html' %}
+<!-- FEATURES 1 -->
+<div class="page-section">
+    <div class="fes1-cont text-center">
+        <div id="textBox" class="font-black wow fadeIn box-item">
+            원하시는 태그를 선택해 보세요! 😊
+        </div>
+        <div class="wow fadeIn" style="display: flex; flex-direction: column; justify-content: center; margin:auto 0;">
+            {% set category = ['사진 명소', '자연/공원', '드라이브/산책', '역사/종교/문화 ', '체험', '축제'] %}
+            {% set subs = [['야경', '계절/꽃', '포토존'], ['바다', '산', '공원'],
+            ['드라이브', '산책'], ['역사', '종교', '문화'], ['액티비티', '아이동반', '이색체험'],
+            ['봄축제', '여름축제', '가을축제', '겨울축제']] %}
+            {% for idx1, (i, sub) in enumerate(zip(category, subs)) %}
+            <div class="one" style="display:flex; flex-direction: row; align-items: center;">
+                <div class="two text-right" style="width: 30%;">
+                    <span id="ctg{{idx1+1}}" class="btn-margin ctg">{{ i }}</span>
                 </div>
-                <div class="row wow fadeIn  sm-mt-40 sm-mb-40">
-                    {% set category = ['사진 명소', '자연/공원', '드라이브/산책', '역사/종교/문화 ', '체험', '축제'] %}
-                    {% set subs = [['야경', '계절/꽃', '포토존'], ['바다', '산', '공원'],
-                    ['드라이브', '산책'], ['역사', '종교', '문화'], ['액티비티', '아이동반', '이색체험'],
-                    ['봄축제', '여름축제', '가을축제', '겨울축제']] %}
-                    {% for idx1, (i, sub) in enumerate(zip(category, subs)) %}
-                    <div class="col-md-4 text-right bd-r">
-                        <span id="ctg{{idx1+1}}" class="btn-margin btn-square ctg font-32">{{ i }}</span>
-                    </div>
-                    <div class="col-md-8 text-left bd-l">
-                        {% for idx2, j in enumerate(sub) %}
-                        <button id="btn{{idx1+1}}{{idx2}}" class="button medium thin blue btn-margin ctg{{idx1+1}}">{{ j
-                            }}</button>
-                        {% endfor %}
-                    </div>
-                    <br>
+                <div class="three text-left"  style="width: 70%; padding: 0;">
+                    {% for idx2, j in enumerate(sub) %}
+                    <button id="btn{{idx1+1}}{{idx2}}" class="button medium thin blue btn-margin-2 ctg{{idx1+1}}">{{ j
+                        }}</button>
                     {% endfor %}
                 </div>
-                <div class="wow fadeIn sm-mt-40 sm-mb-40">
-                    <button id="nextBtn" class="button medium thin blue btn-margin ">결과 보기</button>
-                    <br>
-                    <a id="prevBtn" class="text-underline" href="javascript:window.history.go(-1);">뒤로 가기</a>
-                </div>
             </div>
+            {% endfor %}
+        </div>
+        <div class="wow fadeIn box-item">
+            <button id="nextBtn" class="button medium thin blue btn-margin ">결과 보기</button>
+            <a id="prevBtn" class="text-underline" href="javascript:window.history.go(-1);">뒤로 가기</a>
         </div>
     </div>
-    </div>
+</div>
+</div>
+</div>
 
-    <!-- JS begin -->
-    <!-- jQuery  -->
-    <script src="/static/js/jquery-1.11.2.min.js"></script>
+<!-- JS begin -->
+<!-- jQuery  -->
+<script src="/static/js/jquery-1.11.2.min.js"></script>
 
-    <script type="text/javascript">
-        // if (sessionStorage.getItem('num')) {
-        //     var bg_num = sessionStorage.getItem('num');
-        //     console.log(bg_num);
-        // }
-        $('li:eq(0)').addClass("active");
+<script type="text/javascript">
+// if (sessionStorage.getItem('num')) {
+//     var bg_num = sessionStorage.getItem('num');
+//     console.log(bg_num);
+// }
+$('li:eq(0)').addClass("active");
 
-        //버튼(태그) 클릭 이벤트 처리
-        const withEmoji = ['사진 명소📸', '자연/공원🌻', '드라이브/산책🚶', '역사/종교/문화 🏛', '체험🏄', '축제🎆'];
-        for (const [idx, elem] of withEmoji.entries()) {
-            let ctg = "ctg" + [idx + 1];
+function resize() {
+    if (window.innerWidth < window.innerHeight) {
+        $('.one').css({'flex-direction': 'column'});
+        $('.two').css({'width': '100%'});
+        $('.three').css({'width': '100%', 'border-bottom':'rgba(0, 0, 0, 0.4) 0.1vh dot;'});
+        $('.two').removeClass('text-right');
+        $('.three').addClass('bd-bt');
+        $('.three').removeClass('text-left');
+        $('.button.medium.thin').addClass('mobile');
+        $('.ctg').css({'font-size': '1em', 'padding-right':'0', 'border-right':'rgba(0, 0, 0, 0.4) 0 dashed'});
+    } else {
+        $('.one').css({'flex-direction': 'row'});
+        $('.two').css({'width': '40%'});
+        $('.three').css({'width': '60%'});
+        $('.two').addClass('text-right');
+        $('.three').addClass('text-left');
+        $('.ctg').css({'font-size': '2em', 'padding-right':'2vh', 'border-right':'rgba(0, 0, 0, 0.4) 2px dashed'});
+        $('.button.medium.thin').removeClass('mobile');
+        $('.three').removeClass('bd-bt');
+    }
+}
+resize();
+$(window).resize(function () { resize(); });
 
-            $('.' + ctg).click(function () {
-                // if ($(this).text() == '전체') {
-                //     $(this).addClass('sub-all');
-                //     $(this).siblings().removeClass('active');
+//버튼(태그) 클릭 이벤트 처리
+const withEmoji = ['사진 명소📸', '자연/공원🌻', '드라이브/산책🚶', '역사/종교/문화 🏛', '체험🏄', '축제🎆'];
+for (const [idx, elem] of withEmoji.entries()) {
+    let ctg = "ctg" + [idx + 1];
+    let afterInform = false;
+    $('.' + ctg).click(function () {
+        // if ($(this).text() == '전체') {
+        //     $(this).addClass('sub-all');
+        //     $(this).siblings().removeClass('active');
 
-                // } else {
-                //     $(this).prevAll('.sub-all').removeClass('active');
-                // }; 
+        // } else {
+        //     $(this).prevAll('.sub-all').removeClass('active');
+        // }; 
 
-                if ($(this).hasClass('active')) {
-                    $(this).removeClass('active');
-                    if (!$('.' + ctg).hasClass('active')) {
-                        var innerText = elem.slice(0, -2);
-                        $('#' + ctg).html(innerText);
-                    }
-                } else {
-                    $(this).addClass('active');
-                    $('#' + ctg).html(elem);
-                };
-
-            });
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+            if (!$('.' + ctg).hasClass('active')) {
+                var innerText = elem.slice(0, -2);
+                $('#' + ctg).html(innerText);
+            }
+        } else {
+            $(this).addClass('active');
+            $('#' + ctg).html(elem);
         };
 
-        // 결과페이지 값 전달 json ver.
-        // $("#nextBtn").on("click", function () {
-        //     var tagData = {}
-        //     $('.button.medium.thin').each(function (index) {
-        //         if ($(this).hasClass('active')) {
-        //             if ($(this).text() == '전체') {
-        //                 $(this).removeClass('active');
-        //                 $(this).siblings().each(function () {
-        //                     $(this).addClass('active');
-        //                 });
-        //             } else {
-        //                 let id = $(this).attr('id');
-        //                 tagData[id] = 1;
-        //             };
-        //         } else {
-        //             if (!($(this).text() == '전체') && !($(this).attr('id') == 'nextBtn')) {
-        //                 let id = $(this).attr('id');
-        //                 tagData[id] = 0;
-        //             };
-        //         };
-        //         console.log(tagData);
-        //     });
+        if ($('.button.active').length >= 5){
+            $('#textBox').html('태그를 너무 많이 고르면 <br> 결과가 정확하지 않을 수 있습니다😥');
+            afterInform = true;
+        }
 
-        //     $.ajax({
-        //         type: 'POST',
-        //         contentType: 'application/json',
-        //         url: '/2',
-        //         dataType: 'json',
-        //         data: JSON.stringify(tagData),
-        // success : function(result) {
-        //   location.href = ''; 
-        // },
-        //     });
-        // });
+        if ((afterInform) & ($('.button.active').length < 5)){
+            $('#textBox').html('좋아요! 결과를 확인해볼까요?');
+        }
+    });
+};
+// 결과페이지 값 전달 json ver.
+// $("#nextBtn").on("click", function () {
+//     var tagData = {}
+//     $('.button.medium.thin').each(function (index) {
+//         if ($(this).hasClass('active')) {
+//             if ($(this).text() == '전체') {
+//                 $(this).removeClass('active');
+//                 $(this).siblings().each(function () {
+//                     $(this).addClass('active');
+//                 });
+//             } else {
+//                 let id = $(this).attr('id');
+//                 tagData[id] = 1;
+//             };
+//         } else {
+//             if (!($(this).text() == '전체') && !($(this).attr('id') == 'nextBtn')) {
+//                 let id = $(this).attr('id');
+//                 tagData[id] = 0;
+//             };
+//         };
+//         console.log(tagData);
+//     });
 
-        // 결과페이지 값 전달 string ver.
-        $("#nextBtn").on("click", function () {
-            var tagData = ''
-            $('.button.medium.thin').each(function (index) {
-                if ($(this).hasClass('active')) {
-                    if ($(this).text() == '전체') {
-                        $(this).removeClass('active');
-                        $(this).siblings().each(function () {
-                            $(this).addClass('active');
-                        });
-                    } else {
-                        tagData += 1;
-                    };
-                } else {
-                    if (!($(this).text() == '전체') && !($(this).attr('id') == 'nextBtn')) {
-                        tagData += 0;
-                    };
-                };
-                sessionStorage.setItem("tag", tagData);
-                location.href='/result'
-            });
-        });
-    </script>
+//     $.ajax({
+//         type: 'POST',
+//         contentType: 'application/json',
+//         url: '/2',
+//         dataType: 'json',
+//         data: JSON.stringify(tagData),
+// success : function(result) {
+//   location.href = ''; 
+// },
+//     });
+// });
+
+// 결과페이지 값 전달 string ver.
+$("#nextBtn").on("click", function () {
+    var tagData = ''
+    $('.button.medium.thin').each(function (index) {
+        if ($(this).hasClass('active')) {
+            if ($(this).text() == '전체') {
+                $(this).removeClass('active');
+                $(this).siblings().each(function () {
+                    $(this).addClass('active');
+                });
+            } else {
+                tagData += 1;
+            };
+        } else {
+            if (!($(this).text() == '전체') && !($(this).attr('id') == 'nextBtn')) {
+                tagData += 0;
+            };
+        };
+        sessionStorage.setItem("tag", tagData);
+        location.href='/result'
+    });
+});
+</script>
